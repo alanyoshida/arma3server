@@ -1,0 +1,22 @@
+@ShutdownOnFailedCommand 1 //set to 0 if updating multiple servers at once
+@NoPromptForPassword 0
+login alanyoshida
+
+// For servers which don't need a login
+// login anonymous 
+
+// Change install dir
+force_install_dir ~/arma_server
+
+// Istall arma 3 server
+app_update 233780 validate
+
+// For installing the legacyports for linux players
+// app_update 233780 -beta legacyports -betapassword Arma3LegacyPorts validate
+
+// For installing mods from workshop use the bellow
+// workshop_download_item <game_id> <mod_id>
+// Arma 3 game is 107410
+// workshop_download_item 107410 <mod_id>
+
+quit
