@@ -1,0 +1,75 @@
+@ShutdownOnFailedCommand 1 //set to 0 if updating multiple servers at once
+@NoPromptForPassword 1
+
+// For servers which don't need a login
+login anonymous
+
+// workshop_download_item <game_id> <mod_id>
+// workshop_download_item 107410 <mod_id>
+
+// Ravage
+// https://steamcommunity.com/sharedfiles/filedetails/?id=1376636636
+workshop_download_item 107410 1376636636
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/1376636636 /home/alanyoshida88/armaserver/ravage
+
+// CBA_A3
+// https://steamcommunity.com/sharedfiles/filedetails/?id=450814997&searchtext=cba
+workshop_download_item 107410 450814997
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/450814997 /home/alanyoshida88/armaserver/cba_a3
+
+// [SP/COOP 12] The Days After Zero
+// https://steamcommunity.com/sharedfiles/filedetails/?id=1229196780&searchtext=
+workshop_download_item 107410 1229196780
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/1229196780 /home/alanyoshida88/armaserver/dayz_after_zero
+
+// ALL Mod RHS
+// http://steamcommunity.com/workshop/filedetails/?id=843770737
+workshop_download_item 107410 843770737
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843770737 /home/alanyoshida88/armaserver/all_mod_RHS
+
+// WarfareThai Ex. Thai Armed Force
+// http://steamcommunity.com/sharedfiles/filedetails/?id=636311688
+workshop_download_item 107410 636311688
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/636311688 /home/alanyoshida88/armaserver/warfarethai_armed_force
+
+// CUP Units
+// http://steamcommunity.com/sharedfiles/filedetails/?id=497661914
+workshop_download_item 107410 497661914
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/497661914 /home/alanyoshida88/armaserver/cup_units
+
+// CUP Weapons
+// http://steamcommunity.com/workshop/filedetails/?id=497660133
+workshop_download_item 107410 497660133
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/497660133 /home/alanyoshida88/armaserver/cup_weapons
+
+// CUP Vehicles
+// http://steamcommunity.com/sharedfiles/filedetails/?id=541888371
+workshop_download_item 107410 541888371
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/541888371 /home/alanyoshida88/armaserver/cup_vehicles
+
+// Enhanced Movement
+// http://steamcommunity.com/sharedfiles/filedetails/?id=333310405
+workshop_download_item 107410 333310405
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/333310405 /home/alanyoshida88/armaserver/enhanced_movement
+
+// Chernarus Redux
+// https://steamcommunity.com/workshop/filedetails/?id=1128256978
+workshop_download_item 107410 1128256978
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/1128256978 /home/alanyoshida88/armaserver/chernarus_redux
+
+// CUP Terrains - Core
+// https://steamcommunity.com/workshop/filedetails/?id=583496184
+workshop_download_item 107410 583496184
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/583496184 /home/alanyoshida88/armaserver/cup_terrains
+
+// RHSAFRF
+// https://steamcommunity.com/workshop/filedetails/?id=843425103
+workshop_download_item 107410 843425103
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843425103 /home/alanyoshida88/armaserver/RHSAFRF
+
+//RHSUSAF
+// https://steamcommunity.com/workshop/filedetails/?id=843577117
+workshop_download_item 107410 843577117
+// ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843577117 /home/alanyoshida88/armaserver/RHSUSAF
+
+quit
