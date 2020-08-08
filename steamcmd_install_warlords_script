@@ -1,0 +1,16 @@
+@ShutdownOnFailedCommand 1 //set to 0 if updating multiple servers at once
+@NoPromptForPassword 1
+
+// For servers which don't need a login
+login anonymous 
+
+// For installing mods from workshop use the bellow
+// workshop_download_item <game_id> <mod_id>
+// Arma 3 game is 107410
+// workshop_download_item 107410 <mod_id>
+
+// WARLORDS
+// https://steamcommunity.com/sharedfiles/filedetails/?id=462357997
+workshop_download_item 107410 462357997
+
+quit
