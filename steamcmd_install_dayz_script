@@ -72,4 +72,9 @@ workshop_download_item 107410 843425103
 workshop_download_item 107410 843577117
 // ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843577117 /home/alanyoshida88/armaserver/RHSUSAF
 
+CUP Terrains - Maps
+https://steamcommunity.com/sharedfiles/filedetails/?id=583544987
+workshop_download_item 107410 583544987
+ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/583544987 /home/alanyoshida88/armaserver/cup_terrains_maps
+
 quit
