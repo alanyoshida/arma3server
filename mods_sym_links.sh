@@ -1,15 +1,46 @@
 #!/bin/bash
+# Import functions
+source functions.sh
 
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/1376636636 /home/alanyoshida88/armaserver/ravage
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/450814997 /home/alanyoshida88/armaserver/cba_a3
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/1229196780 /home/alanyoshida88/armaserver/dayz_after_zero
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843770737 /home/alanyoshida88/armaserver/all_mod_RHS
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/636311688 /home/alanyoshida88/armaserver/warfarethai_armed_force
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/497661914 /home/alanyoshida88/armaserver/cup_units
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/497660133 /home/alanyoshida88/armaserver/cup_weapons
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/541888371 /home/alanyoshida88/armaserver/cup_vehicles
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/333310405 /home/alanyoshida88/armaserver/enhanced_movement
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/1128256978 /home/alanyoshida88/armaserver/chernarus_redux
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/583496184 /home/alanyoshida88/armaserver/cup_terrains
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843425103 /home/alanyoshida88/armaserver/RHSAFRF
-ln -s /home/alanyoshida88/Steam/steamapps/workshop/content/107410/843577117 /home/alanyoshida88/armaserver/RHSUSAF
+# Show asciiart
+logo
+
+basic_help "$(basename $0)" \
+  "This script creates the symlinks for all the workshop mods in the arma server folder." \
+  "[workshop_path] [arma_dedicated_server_path]" \
+  $@
+
+check_parameter $1
+check_parameter $2
+
+WORKSHOP_PATH=$1
+ARMASERVER_PATH=$2
+echo "Workshop path: $WORKSHOP_PATH"
+echo "Arma dedicated server path: $ARMASERVER_PATH"
+
+ask_continue
+
+h1 "Show links that we will make"
+ARMA_WORKSHOP_PATH="$WORKSHOP_PATH/content/107410/*"
+ls $ARMA_WORKSHOP_PATH
+for f in $ARMA_WORKSHOP_PATH; do
+    if [ -d "$f" ]; then
+        # $f is a directory
+        $linkName=$(get_workshop_item_name $(basename $f))
+        echo "ln -s $f $ARMASERVER_PATH/$linkName"
+    fi
+done
+bold "Check if the links are correct, and continue."
+ask_continue
+
+h1 "Generating symlinks"
+for f in $ARMA_WORKSHOP_PATH; do
+    if [ -d "$f" ]; then
+        # $f is a directory
+        $linkName=$(get_workshop_item_name $(basename $f))
+        echo "ln -s $f $ARMASERVER_PATH/$linkName"
+        ask_continue
+        ln -s $f $ARMASERVER_PATH/$linkName
+    fi
+done
+#ln -s $WORKSHOP_PATH/content/107410/1376636636 /home/alanyoshida88/armaserver/ravage
