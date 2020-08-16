@@ -7,7 +7,7 @@ logo
 
 basic_help "$(basename $0)" \
   "This script creates the scripts files in the arma 3 dedicated server folder for better management" \
-  "[arma3server_folder_path]" \
+  "[arma3server_absolute_folder_path]" \
   $@
 
 check_parameter $1
