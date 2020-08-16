@@ -47,7 +47,7 @@ info(){
  yellow "$1"
 }
 
-sucess(){
+success(){
  green "$1"
 }
 
@@ -138,8 +138,10 @@ show_basic_help(){
 # $1 => String to be cleaned
 # Usage: variable=$(clean "$variable")
 clean(){
-  #local result=$(echo $1 | sed -e 's/^[[:space:]]*//')
-  local result=$(echo "$1" | sed -e 's/^[[:space:]]*//' | sed -e 's/\n//g')
+  local result=$(echo "$1" \
+  | sed -e 's/\n//g' \
+  | sed -e 's/[^a-zA-Z0-9_]//g' \
+  )
   echo "$result"
 }
 
@@ -210,4 +212,15 @@ start_server(){
     exit 0
   fi
   $ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg
+}
+
+# execute_test - Function to format tests
+# $1 => Value to be tested
+# $2 => Expected value
+execute_test(){
+  test1=$1
+  test1_expected="$2"
+  bold "\nTest"
+  echo -e "Returned $test1 expected $test1_expected"
+  [[ "$test1" == "$test1_expected" ]] && success "Passed" || error "Failed"
 }
