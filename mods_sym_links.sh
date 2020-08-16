@@ -1,8 +1,8 @@
 #!/bin/bash
-# Import functions
+#set -o xtrace
+
 source functions.sh
 
-# Show asciiart
 logo
 
 basic_help "$(basename $0)" \
@@ -43,4 +43,3 @@ for f in $ARMA_WORKSHOP_PATH; do
         ln -s $f $ARMASERVER_PATH/$linkName
     fi
 done
-#ln -s $WORKSHOP_PATH/content/107410/1376636636 /home/alanyoshida88/armaserver/ravage

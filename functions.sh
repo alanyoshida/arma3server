@@ -51,20 +51,6 @@ sucess(){
  green "$1"
 }
 
-#
-# GENERAL PURPOSE FUNCTIONS
-#
-
-# check_parameter - Check if the parameter is missing, and exit if missing
-# $1 => Pass the parameter to be checked
-check_parameter(){
-  if [ -z "$1" ]; then
-    error "[Error] Missing parameters \n"
-    echo "Check usage in help options using --help or -h"
-    exit 1
-  fi
-}
-
 # out - Function to simplify the output format of bash, instead of use of \e[31m you can use <31>
 # $1 => String containing the content to be printed
 out()
@@ -84,6 +70,20 @@ out()
     echo ${params} "${message}"
 }
 
+#
+# GENERAL PURPOSE FUNCTIONS
+#
+
+# check_parameter - Check if the parameter is missing, and exit if missing
+# $1 => Pass the parameter to be checked
+check_parameter(){
+  if [ -z "$1" ]; then
+    error "[Error] Missing parameters \n"
+    echo "Check usage in help options using --help or -h"
+    exit 1
+  fi
+}
+
 # ask_continue - Function ask if you want to continue
 ask_continue(){
   bold "\nDo you wish to continue ? (y/n):"
@@ -99,9 +99,9 @@ ask_continue(){
 # $3 => Usage
 # $4 => Pass all args, to work -h or --help
 basic_help(){
-  SCRIPT_NAME="$1"
-  DESCRIPTION="$2"
-  USAGE="$3"
+  local SCRIPT_NAME="$1"
+  local DESCRIPTION="$2"
+  local USAGE="$3"
   for args in $@
   do
     case $args in
@@ -119,9 +119,9 @@ basic_help(){
 # $2 => Description
 # $3 => Usage
 show_basic_help(){
-  SCRIPT_NAME=$1
-  DESCRIPTION=$2
-  USAGE=$3
+  local SCRIPT_NAME=$1
+  local DESCRIPTION=$2
+  local USAGE=$3
   out "
 <1;4>Description<0>
   $DESCRIPTION
@@ -154,3 +154,60 @@ get_workshop_item_name(){
   echo "$title"
 }
 
+# set_env - Set the envs from .env
+set_env(){
+  h1 "Setting env config"
+  if [ -f .env ]; then
+    source .env
+  else
+    error "No .env file found"
+  fi
+}
+
+
+# get_mods - Get the mods from a file and concatenate with ;
+# $1 => mods file
+# Mods files must be one mod name (synlink) per line
+get_mods(){
+  local MODS=""
+  local first=true
+  while read line; do
+    if [[ ! -z "$line" ]]; then
+      if [ "$first" == "true" ]; then
+        MODS="$line"
+        first=false
+      else
+        MODS="$MODS;$line"
+      fi
+    fi
+  done < $1
+  echo "MODS=$MODS"
+}
+
+# start_server_with_mods - Start the arma 3 dedicated server
+# $1 => Arma dedicated executable folder path
+# $2 => Mods file
+start_server_with_mods(){
+  ARMA_SERVER_PATH=$1
+  MODS=$(get_mods $2)
+  echo "Run in background ? (y/n)"
+  read background
+  if [ "$background" != "${background#[yY]}" ] ;then
+    nohup sh -c "$ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg -mod=\"$MODS\"" &
+    exit 0
+  fi
+  $ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg -mod="$MODS"
+}
+
+# start_server - Start the arma 3 dedicated server
+# $1 => Arma dedicated executable folder path
+start_server(){
+  ARMA_SERVER_PATH=$1
+  echo "Run in background ? (y/n)"
+  read background
+  if [ "$background" != "${background#[yY]}" ] ;then
+    nohup sh -c "$ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg" &
+    exit 0
+  fi
+  $ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg
+}

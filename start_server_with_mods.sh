@@ -1,12 +1,15 @@
-#!/bin/sh
-set -o xtrace
-#/home/alanyoshida88/armalegacy/arma3server -name=server -config=server.cfg -mod=
+#!/bin/bash
+#set -o xtrace
+source functions.sh
 
-ARMA_SERVER_PATH="/home/alanyoshida88/armaserver"
-echo "Run in background ? (y/n)"
-read background
-if [ "$background" != "${background#[yY]}" ] ;then
-  nohup sh -c "$ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg -mod=\"$1\"" &
-  exit 0
-fi
-$ARMA_SERVER_PATH/arma3server -name=server -config=server.cfg -mod="$1" -netlog > log &
+logo
+
+basic_help "$(basename $0)" \
+  "This script start the arma server with mods" \
+  "[arma3server_folder_path] [mods_file]" \
+  $@
+
+check_parameter $1
+check_parameter $2
+
+start_server_with_mods $1 $2

@@ -1,9 +1,8 @@
 #!/bin/bash
+#set -o xtrace
 
-# Import functions
 source functions.sh
 
-# Show asciiart
 logo
 
 basic_help "$(basename $0)" \

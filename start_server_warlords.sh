@@ -1,3 +1,15 @@
-#!/bin/sh
-#/home/alanyoshida88/armalegacy/arma3server -name=server -config=server.cfg -mod=
-./start_server_with_mods.sh "warlords"
+#!/bin/bash
+#set -o xtrace
+
+source functions.sh
+
+logo
+
+basic_help "$(basename $0)" \
+  "This script start the arma server with warlords mods" \
+  "[arma3server_folder_path]" \
+  $@
+
+check_parameter $1
+
+start_server_with_mods $1 "warlords"
